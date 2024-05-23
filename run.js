@@ -1,4 +1,6 @@
+// push
 const { firefox } = require('playwright');
+
 
 (async () => {
   // Launch a browser
