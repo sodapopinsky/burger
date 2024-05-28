@@ -5,6 +5,10 @@ const { firefox } = require('playwright');
 (async () => {
   // Launch a browser
   const browser = await firefox.launch({ headless: true }); // Set headless to true if you don't want to see the browser
+  
+  
+  const maxVotes = 250;
+  const throttleFactor = 100
   let votes = 0;
 
   
@@ -57,6 +61,10 @@ const { firefox } = require('playwright');
 
       console.log('Clicked on "Atomic Burger, Metairie".');
       votes++;
+      if(votes > maxVotes){
+        console.log('Voting complete');
+        process.exit();
+      }
     } catch (error) {
       console.error('An error occurred:', error);
     } finally {
@@ -67,11 +75,12 @@ const { firefox } = require('playwright');
   // Run the main function in a loop
   while (true) {
     try {
+     
       await performActions();
       // Wait between 3 to 30 seconds before running the loop again
-      const delay = Math.floor(Math.random() * 270) + 300; // Random delay between 3000ms (3s) and 30000ms (30s)
+      const delay = throttleFactor *  Math.floor(Math.random() * 270) + 300; // Random delay between 3000ms (3s) and 30000ms (30s)
       console.log(`Waiting for ${delay / 1000} seconds before next iteration. Total votes: ${votes}`);
-      await new Promise(resolve => setTimeout(resolve, delay));
+      await new Promise(resolve => setTimeout(resolve, delay)); 
     } catch (error) {
       console.error('An error occurred in the main loop:', error);
       // Wait a short interval before retrying
