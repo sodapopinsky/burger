@@ -13,7 +13,7 @@ const { firefox } = require('playwright');
     permissions: ['geolocation'], // you can add other permissions if needed
   });
 
-  // Block notifications
+  // Block notifications  57543 @ 9:13   63,777
   await context.grantPermissions([], { origin: 'https://www.nola.com' });
 
   // Define the main function to be run in a loop
