@@ -7,8 +7,8 @@ const { firefox } = require('playwright');
   const browser = await firefox.launch({ headless: true }); // Set headless to true if you don't want to see the browser
   
   
-  const maxVotes = 250;
-  const throttleFactor = 100
+  const maxVotes = 10000;
+  const throttleFactor = 1
   let votes = 0;
 
   
